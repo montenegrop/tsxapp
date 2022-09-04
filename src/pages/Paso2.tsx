@@ -24,7 +24,10 @@ const Paso2Page: React.FC = () => {
       <IonContent fullscreen>
         <IonList>
           <IonItem>
-            <BotonRedondo texto="botonRedondoPagina2"></BotonRedondo>
+            <BotonRedondo color="warning" texto="color"></BotonRedondo>
+          </IonItem>
+          <IonItem>
+            <BotonRedondo color="warning" texto="modelo"></BotonRedondo>
           </IonItem>
         </IonList>
       </IonContent>
