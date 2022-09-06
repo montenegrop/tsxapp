@@ -1,11 +1,11 @@
 import { IonButton } from "@ionic/react";
 
-interface BotonRedondoProps {
+interface NavigateTopProps {
   texto: string;
   color?: string;
 }
 
-const BotonRedondo: React.FC<BotonRedondoProps> = ({ texto, color }) => {
+const NavigateTop: React.FC<NavigateTopProps> = ({ texto, color }) => {
   return (
     <IonButton color={color} shape="round">
       {texto}
@@ -13,4 +13,4 @@ const BotonRedondo: React.FC<BotonRedondoProps> = ({ texto, color }) => {
   );
 };
 
-export { BotonRedondo };
+export { NavigateTop };
