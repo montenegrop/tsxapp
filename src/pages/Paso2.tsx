@@ -13,21 +13,33 @@ import { star } from "ionicons/icons";
 import { BotonRedondo } from "../components/BotonRedondo";
 import "./Home.css";
 
+const estilos = {
+  botonRedondo: {
+    color: "warning",
+  },
+};
+
 const Paso2Page: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Blank</IonTitle>
+          <IonTitle>Más datos descriptivos</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonList>
           <IonItem>
-            <BotonRedondo color="warning" texto="color"></BotonRedondo>
+            <BotonRedondo
+              color={estilos.botonRedondo.color}
+              texto="color"
+            ></BotonRedondo>
           </IonItem>
           <IonItem>
-            <BotonRedondo color="warning" texto="modelo"></BotonRedondo>
+            <BotonRedondo
+              color={estilos.botonRedondo.color}
+              texto="modelo"
+            ></BotonRedondo>
           </IonItem>
         </IonList>
       </IonContent>
