@@ -8,6 +8,8 @@ import {
   IonList,
   IonItem,
   IonIcon,
+  IonGrid,
+  IonRow,
 } from "@ionic/react";
 import { star } from "ionicons/icons";
 import { BotonRedondo } from "../components/BotonRedondo";
@@ -28,20 +30,20 @@ const Paso2Page: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonList>
-          <IonItem>
+        <IonGrid>
+          <IonRow className="ion-justify-content-center">
             <BotonRedondo
               color={estilos.botonRedondo.color}
               texto="color"
             ></BotonRedondo>
-          </IonItem>
-          <IonItem>
+          </IonRow>
+          <IonRow className="ion-justify-content-center">
             <BotonRedondo
               color={estilos.botonRedondo.color}
               texto="modelo"
             ></BotonRedondo>
-          </IonItem>
-        </IonList>
+          </IonRow>
+        </IonGrid>
       </IonContent>
     </IonPage>
   );

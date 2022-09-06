@@ -7,7 +7,7 @@ interface BotonRedondoProps {
 
 const BotonRedondo: React.FC<BotonRedondoProps> = ({ texto, color }) => {
   return (
-    <IonButton color={color} shape="round">
+    <IonButton className="text-center" color={color} shape="round">
       {texto}
     </IonButton>
   );
