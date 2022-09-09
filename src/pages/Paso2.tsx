@@ -114,6 +114,21 @@ const Paso2Page: React.FC = () => {
                 input={text}
                 onInput={setText}
               ></Paso2Card>
+              <Paso2Card
+                titulo="color"
+                input={text}
+                onInput={setText}
+              ></Paso2Card>
+              <Paso2Card
+                titulo="color"
+                input={text}
+                onInput={setText}
+              ></Paso2Card>
+              <Paso2Card
+                titulo="color"
+                input={text}
+                onInput={setText}
+              ></Paso2Card>
               <IonItem>
                 <IonLabel>Select</IonLabel>
                 <IonSelect interface="popover" interfaceOptions={options}>
