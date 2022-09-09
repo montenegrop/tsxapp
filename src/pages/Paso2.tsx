@@ -19,15 +19,16 @@ import {
   IonLabel,
   IonItemDivider,
   IonInput,
+  IonSelect,
+  IonSelectOption,
 } from "@ionic/react";
 import { pin, wifi, wine, warning, walk } from "ionicons/icons";
 import { star } from "ionicons/icons";
 import { useState } from "react";
 import { BotonRedondo } from "../components/BotonRedondo";
-import "./Home.css";
 
 // css:
-import "./paso2.css";
+import "./Paso2.css";
 
 const estilosProps = {
   botonRedondo: {
@@ -42,6 +43,10 @@ const estilos = {
   label: {
     flex: "0 0 120px",
   },
+};
+
+const options = {
+  cssClass: "my-custom-interface",
 };
 
 // interfaces:
@@ -109,6 +114,17 @@ const Paso2Page: React.FC = () => {
                 input={text}
                 onInput={setText}
               ></Paso2Card>
+              <IonItem>
+                <IonLabel>Select</IonLabel>
+                <IonSelect interface="popover" interfaceOptions={options}>
+                  <IonSelectOption value="brown" class="brown-option">
+                    Brown
+                  </IonSelectOption>
+                  <IonSelectOption value="blonde">Blonde</IonSelectOption>
+                  <IonSelectOption value="black">Black</IonSelectOption>
+                  <IonSelectOption value="red">Red</IonSelectOption>
+                </IonSelect>
+              </IonItem>
             </IonCol>
           </IonRow>
         </IonGrid>

@@ -8,6 +8,7 @@ import {
 import { IonReactRouter } from "@ionic/react-router";
 import Home from "./pages/Home";
 import { Paso2Page } from "./pages/Paso2";
+// import { ButtonsPage } from "./pages/Buttons";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -27,7 +28,6 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import { ButtonsPage } from "./pages/Buttons";
 
 setupIonicReact();
 
@@ -41,12 +41,12 @@ const App: React.FC = () => (
         <Route exact path="/">
           <Redirect to="/home" />
         </Route>
-        <Route exact path="/paso2">
+        <Route exact path="/pasodos">
           <Paso2Page />
         </Route>
-        <Route exact path="/buttons">
+        {/* <Route exact path="/buttons">
           <ButtonsPage />
-        </Route>
+        </Route> */}
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
