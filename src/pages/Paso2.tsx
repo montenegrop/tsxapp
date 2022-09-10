@@ -78,10 +78,19 @@ const Paso2Card: React.FC<Paso2PageProps> = ({ titulo, input, onInput }) => {
             <IonLabel style={estilos.label} position="fixed">
               Seleccionar:
             </IonLabel>
-            <IonInput
-              value={input}
-              onIonChange={(e) => onInput(e.detail.value!)}
-            ></IonInput>
+            <IonSelect
+              interface="alert"
+              cancelText="cancelar"
+              okText="oktexto"
+              interfaceOptions={options}
+            >
+              <IonSelectOption value="brown" class="brown-option">
+                Brown
+              </IonSelectOption>
+              <IonSelectOption value="blonde">Blonde</IonSelectOption>
+              <IonSelectOption value="black">Black</IonSelectOption>
+              <IonSelectOption value="red">Red</IonSelectOption>
+            </IonSelect>
           </IonItem>
         </IonList>
       </IonCardContent>
@@ -109,37 +118,6 @@ const Paso2Page: React.FC = () => {
                 input={text}
                 onInput={setText}
               ></Paso2Card>
-              <Paso2Card
-                titulo="color"
-                input={text}
-                onInput={setText}
-              ></Paso2Card>
-              <Paso2Card
-                titulo="color"
-                input={text}
-                onInput={setText}
-              ></Paso2Card>
-              <Paso2Card
-                titulo="color"
-                input={text}
-                onInput={setText}
-              ></Paso2Card>
-              <Paso2Card
-                titulo="color"
-                input={text}
-                onInput={setText}
-              ></Paso2Card>
-              <IonItem>
-                <IonLabel>Select</IonLabel>
-                <IonSelect interface="popover" interfaceOptions={options}>
-                  <IonSelectOption value="brown" class="brown-option">
-                    Brown
-                  </IonSelectOption>
-                  <IonSelectOption value="blonde">Blonde</IonSelectOption>
-                  <IonSelectOption value="black">Black</IonSelectOption>
-                  <IonSelectOption value="red">Red</IonSelectOption>
-                </IonSelect>
-              </IonItem>
             </IonCol>
           </IonRow>
         </IonGrid>
