@@ -29,6 +29,7 @@ import { BotonRedondo } from "../components/BotonRedondo";
 
 // css:
 import "./Paso2.css";
+import { BotonVolver } from "../components/BotonVolver";
 
 const estilosProps = {
   botonRedondo: {
@@ -104,15 +105,21 @@ const Paso2Page: React.FC = () => {
 
   return (
     <IonPage>
+      <div></div>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Más datos descriptivos</IonTitle>
+          <BotonVolver texto="volver" />
+          <IonTitle class="ion-text-center">Más datos descriptivos</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
+        <div>content</div>
         <IonGrid>
+          <div>grid</div>
           <IonRow>
+            <div>row</div>
             <IonCol>
+              <div>col</div>
               <Paso2Card
                 titulo="modelo"
                 input={text}
