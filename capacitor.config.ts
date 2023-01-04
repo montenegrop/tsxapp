@@ -1,4 +1,5 @@
 import { CapacitorConfig } from "@capacitor/cli";
+import { googleClientId } from "./loginAPI";
 
 const config: CapacitorConfig = {
   appId: "io.ionic.starter",
@@ -8,9 +9,8 @@ const config: CapacitorConfig = {
   plugins: {
     GoogleAuth: {
       scopes: ["profile", "email"],
-      serverClientId:
-        "519338495248-726fk8ucg1dpaec3os07p9qjf396d697.apps.googleusercontent.com",
-      forceCodeForRefreshToken: true,
+      clientId: googleClientId,
+      grantOfflineAccess: true,
     },
   },
 };

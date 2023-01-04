@@ -28,6 +28,7 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import LoginPage from "./pages/Login";
 
 setupIonicReact();
 
@@ -46,6 +47,9 @@ const App: React.FC = () => (
         </Route>
         <Route exact path="/buttons">
           <ButtonsPage />
+        </Route>
+        <Route exact path="/login">
+          <LoginPage />
         </Route>
         {/* <Route exact path="/buttons">
           <ButtonsPage />
