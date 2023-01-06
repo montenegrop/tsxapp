@@ -11,7 +11,6 @@ import {
 } from "@ionic/react";
 import { star } from "ionicons/icons";
 import { BotonRedondo } from "../components/BotonRedondo";
-import "./Home.css";
 
 const ButtonsPage: React.FC = () => {
   return (
