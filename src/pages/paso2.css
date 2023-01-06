@@ -1,0 +1,6 @@
+/* Popover Interface: set color for the popover using Item's CSS variables */
+.my-custom-interface .brown-option {
+  --color: red;
+  --color-hover: #362419;
+}
+
