@@ -3,6 +3,7 @@ import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import Home from "./pages/Home";
 import { Paso2Page } from "./pages/Paso2";
+import { ButtonsPage } from "./pages/Buttons";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -22,7 +23,9 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import { ButtonsPage } from "./pages/Buttons";
+import LoginPage from "./pages/Login";
+import { Paso1Page } from "./pages/Paso1";
+import { InputExamples } from "./components/TextInputs";
 
 setupIonicReact();
 
@@ -36,12 +39,24 @@ const App: React.FC = () => (
         <Route exact path="/">
           <Redirect to="/home" />
         </Route>
-        <Route exact path="/paso2">
+        <Route exact path="/pasouno">
+          <Paso1Page />
+        </Route>
+        <Route exact path="/pasodos">
           <Paso2Page />
+        </Route>
+        <Route exact path="/test/input">
+          <InputExamples />
         </Route>
         <Route exact path="/buttons">
           <ButtonsPage />
         </Route>
+        <Route exact path="/login">
+          <LoginPage />
+        </Route>
+        {/* <Route exact path="/buttons">
+          <ButtonsPage />
+        </Route> */}
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
