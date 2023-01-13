@@ -27,6 +27,8 @@ import LoginPage from "./pages/Login";
 import { Paso1Page } from "./pages/Paso1";
 import { InputExamples } from "./components/TextInputs";
 
+// import "./pages/Paso1.css";
+
 setupIonicReact();
 
 const App: React.FC = () => (

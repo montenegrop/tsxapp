@@ -1,5 +1,7 @@
 import { IonButton, IonCol, IonGrid, IonRow } from "@ionic/react";
 
+import "../pages/Paso1.css";
+
 export const DisplayGrid: React.FC = () => {
   const css = `
     ion-button.only-here-1 {
