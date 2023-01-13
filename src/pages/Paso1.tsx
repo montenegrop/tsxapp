@@ -20,6 +20,8 @@ import "./Paso2.css";
 import { BotonVolver } from "../components/BotonVolver";
 import { DisplayGrid } from "../components/DisplayPatente";
 
+import "./Paso1.css";
+
 const estilosProps = {
   botonRedondo: {
     color: "warning",
