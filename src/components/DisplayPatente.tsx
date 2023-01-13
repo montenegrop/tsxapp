@@ -1,11 +1,21 @@
 import { IonButton, IonCol, IonGrid, IonRow } from "@ionic/react";
 
-export const DisplayGrid: React.FC = () => {
+interface DisplayGridProps {
+  plateType: string;
+  values: string[];
+}
+
+export const DisplayGrid: React.FC<DisplayGridProps> = ({
+  plateType,
+  values,
+}) => {
   return (
     <IonGrid>
       <IonRow>
         <IonCol>
-          <IonButton className="only-here-1">dsd</IonButton>
+          {values.map((value) => (
+            <IonButton className="only-here-1">{value}</IonButton>
+          ))}
         </IonCol>
       </IonRow>
     </IonGrid>

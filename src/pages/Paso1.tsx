@@ -63,7 +63,7 @@ const Paso1Card: React.FC<Paso1PageProps> = ({ titulo, input, onInput }) => {
           color={estilosProps.botonRedondo.color}
           texto={titulo}
         ></BotonRedondo>
-        <DisplayGrid></DisplayGrid>
+        <DisplayGrid plateType="modelo_1" values={["", "sd"]}></DisplayGrid>
         <ButtonsGrid></ButtonsGrid>
       </IonCardContent>
     </IonCard>
