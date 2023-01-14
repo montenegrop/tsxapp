@@ -10,7 +10,7 @@ import {
   IonIcon,
 } from "@ionic/react";
 import { star } from "ionicons/icons";
-import { BotonRedondo } from "../components/BotonRedondo";
+import { BotonRedondo } from "../components/page1/BotonRedondo";
 
 const ButtonsPage: React.FC = () => {
   return (
@@ -64,7 +64,6 @@ const ButtonsPage: React.FC = () => {
             <IonButton size="small">Small</IonButton>
           </IonItem>
         </IonList>
-        <BotonRedondo texto="botonRedondo2"></BotonRedondo>
       </IonContent>
     </IonPage>
   );

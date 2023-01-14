@@ -25,7 +25,7 @@ import {
 import { pin, wifi, wine, warning, walk } from "ionicons/icons";
 import { star } from "ionicons/icons";
 import { useState } from "react";
-import { BotonRedondo } from "../components/BotonRedondo";
+import { BotonRedondo } from "../components/page1/BotonRedondo";
 
 // css:
 import "./Paso2.css";
@@ -61,10 +61,10 @@ const Paso2Card: React.FC<Paso2PageProps> = ({ titulo, input, onInput }) => {
   return (
     <IonCard className="ion-text-center">
       <IonCardContent className="ion-text-center">
-        <BotonRedondo
+        {/* <BotonRedondo
           color={estilosProps.botonRedondo.color}
           texto={titulo}
-        ></BotonRedondo>
+        ></BotonRedondo> */}
         <IonList>
           <IonItem lines="full">
             <IonLabel style={estilos.label} position="fixed" className="mr-0">

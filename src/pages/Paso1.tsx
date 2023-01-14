@@ -13,7 +13,7 @@ import {
   IonInput,
 } from "@ionic/react";
 import { useEffect, useState } from "react";
-import { BotonRedondo } from "../components/BotonRedondo";
+import { BotonRedondo } from "../components/page1/BotonRedondo";
 
 // css:
 import "./Paso2.css";
@@ -22,6 +22,7 @@ import { DisplayPlate } from "../components/page1/DisplayPlate";
 
 import "./Paso1.css";
 import { PlateButtons } from "../components/page1/PlateButtons";
+import { config } from "process";
 
 const estilosProps = {
   botonRedondo: {
@@ -31,19 +32,41 @@ const estilosProps = {
 
 const abecedario = "ABCDEFGHIJKLMOPQRSTUVWXYZ";
 
+interface IplateType {
+  number: number;
+  configuration: number[];
+}
+
+const plateTypeValues = [
+  [2, 3, 2],
+  [3, 3],
+];
+
 const Paso1Page: React.FC = () => {
-  const [text, setText] = useState<string>();
-  const [plateType, setplateType] = useState<number[]>([2, 3, 2]);
+  const [plateType, setplateType] = useState<IplateType>({
+    number: 0,
+    configuration: plateTypeValues[0],
+  });
   // initial plate:
-  const plateLength = plateType.reduce((partial, curr) => partial + curr, 0);
+  const plateLength = plateType.configuration.reduce(
+    (partial, curr) => partial + curr,
+    0
+  );
   const [plate, setPlate] = useState<string[]>(
     Array(plateLength).join(".").split(".")
   );
   // Array(plateLength).join(".").split(".")
 
+  function changePlateType() {
+    return setplateType({
+      number: (plateType.number + 1) % plateTypeValues.length,
+      configuration:
+        plateTypeValues[(plateType.number + 1) % plateTypeValues.length],
+    });
+  }
+
   return (
     <IonPage>
-      <div></div>
       <IonHeader>
         <IonToolbar>
           <BotonVolver texto="volver" />
@@ -58,9 +81,10 @@ const Paso1Page: React.FC = () => {
                 <BotonRedondo
                   color={estilosProps.botonRedondo.color}
                   texto="patente"
+                  onAction={changePlateType}
                 ></BotonRedondo>
                 <DisplayPlate
-                  plateType={plateType}
+                  plateType={plateType.configuration}
                   values={plate}
                 ></DisplayPlate>
                 <PlateButtons buttons={abecedario}></PlateButtons>
