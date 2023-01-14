@@ -12,7 +12,7 @@ import {
   IonButton,
   IonInput,
 } from "@ionic/react";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { BotonRedondo } from "../components/page1/BotonRedondo";
 
 // css:
@@ -55,8 +55,9 @@ const Paso1Page: React.FC = () => {
   const [plate, setPlate] = useState<string[]>(
     Array(plateLength).join(".").split(".")
   );
+  const [plateIndexToChange, setPlateIndexToChange] = useState(0);
 
-  function changePlateType() {
+  async function changePlateType() {
     setplateType({
       number: (plateType.number + 1) % plateTypeValues.length,
       configuration:
@@ -64,14 +65,30 @@ const Paso1Page: React.FC = () => {
     });
   }
 
-  function changePlate(symbol: string, index: number) {
-    const old_plate = [...plate];
-    console.log(old_plate);
+  function changePlateIndexToChange() {
+    setPlateIndexToChange((plateIndexToChange + 1) % plate.length);
   }
 
-  useEffect(() => {
-    console.log("sd");
-  }, [plate]);
+  function changePlate(symbol: string) {
+    const old_plate = [...plate];
+    old_plate[plateIndexToChange] = symbol;
+    setPlate(old_plate);
+    setPlateIndexToChange((plateIndexToChange + 1) % plate.length);
+  }
+
+  const firstUpdate = useRef(true);
+  useLayoutEffect(() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+    const plateLength = plateType.configuration.reduce(
+      (partial, curr) => partial + curr,
+      0
+    );
+    setPlate(Array(plateLength).join(".").split("."));
+    setPlateIndexToChange(0);
+  }, [plateType]);
 
   return (
     <IonPage>
@@ -94,6 +111,8 @@ const Paso1Page: React.FC = () => {
                 <DisplayPlate
                   plateType={plateType.configuration}
                   values={plate}
+                  index={plateIndexToChange}
+                  onChange={changePlateIndexToChange}
                 ></DisplayPlate>
                 <PlateButtons
                   buttons={abecedario}
