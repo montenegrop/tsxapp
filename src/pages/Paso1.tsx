@@ -55,15 +55,23 @@ const Paso1Page: React.FC = () => {
   const [plate, setPlate] = useState<string[]>(
     Array(plateLength).join(".").split(".")
   );
-  // Array(plateLength).join(".").split(".")
 
   function changePlateType() {
-    return setplateType({
+    setplateType({
       number: (plateType.number + 1) % plateTypeValues.length,
       configuration:
         plateTypeValues[(plateType.number + 1) % plateTypeValues.length],
     });
   }
+
+  function changePlate(symbol: string, index: number) {
+    const old_plate = [...plate];
+    console.log(old_plate);
+  }
+
+  useEffect(() => {
+    console.log("sd");
+  }, [plate]);
 
   return (
     <IonPage>
@@ -87,7 +95,10 @@ const Paso1Page: React.FC = () => {
                   plateType={plateType.configuration}
                   values={plate}
                 ></DisplayPlate>
-                <PlateButtons buttons={abecedario}></PlateButtons>
+                <PlateButtons
+                  buttons={abecedario}
+                  onAction={changePlate}
+                ></PlateButtons>
               </IonCardContent>
             </IonCard>
           </IonRow>

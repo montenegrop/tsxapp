@@ -12,7 +12,7 @@ const BotonRedondo: React.FC<BotonRedondoProps> = ({
   onAction,
 }) => {
   return (
-    <IonButton onClick={() => onAction()} color={color} shape="round">
+    <IonButton onClick={() => onAction(texto)} color={color} shape="round">
       {texto}
     </IonButton>
   );
