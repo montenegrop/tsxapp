@@ -1,7 +1,7 @@
 import { IonButton, IonCol, IonGrid, IonRow } from "@ionic/react";
 import React from "react";
 
-interface DisplayGridProps {
+interface DisplayPlateProps {
   plateType: number[];
   values: string[];
 }
@@ -41,7 +41,7 @@ function plateArr(
   );
 }
 
-export const DisplayGrid: React.FC<DisplayGridProps> = ({
+export const DisplayPlate: React.FC<DisplayPlateProps> = ({
   plateType,
   values,
 }) => {
