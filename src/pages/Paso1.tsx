@@ -82,12 +82,17 @@ const Paso1Page: React.FC = () => {
   const [text, setText] = useState<string>();
   const [plateType, setplateType] = useState<number[]>([2, 3, 2]);
   // initial plate:
-  const plateLength = plateType.reduce((partialSum, a) => partialSum + a, 0);
-  const [plate, setPlate] = useState<string[]>(
-    Array(plateLength).join(".").split(".")
-  );
-
-  console.log(plate);
+  const plateLength = plateType.reduce((partial, curr) => partial + curr, 0);
+  const [plate, setPlate] = useState<string[]>([
+    "a",
+    "a",
+    "c",
+    "d",
+    "a",
+    "a",
+    "a",
+  ]);
+  // Array(plateLength).join(".").split(".")
 
   return (
     <IonPage>

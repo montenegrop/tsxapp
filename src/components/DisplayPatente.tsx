@@ -6,22 +6,37 @@ interface DisplayGridProps {
   values: string[];
 }
 
-function plateArr(arr: number, index: number, array: number[]) {
+function getPlateIndex(
+  localPlateIndex: number,
+  plateType: number[],
+  plateTypeIndex: number
+): number {
+  const plateTypeSliced = plateType.slice(0, plateTypeIndex);
+  return (
+    plateTypeSliced.reduce((partial, curr) => partial + curr, 0) +
+    localPlateIndex
+  );
+}
+
+function plateArr(
+  arr: number,
+  arr_index: number,
+  plateType: number[],
+  plate: string[]
+) {
   return (
     <>
-      {Array.from(Array(arr).keys()).map((value) => (
-        <IonButton
-          key={value}
-          className={"only-here-1 plate-type-" + (arr % 2).toString()}
-        >
-          {value}
-        </IonButton>
-      ))}
-      {index !== array.length - 1 && (
-        <IonButton key={arr} className="only-here-1 plate-separator">
-          -
-        </IonButton>
-      )}
+      {Array.from(Array(arr).keys()).map((localIndex) => {
+        const plateIndex = getPlateIndex(localIndex, plateType, arr_index);
+        return (
+          <IonButton
+            key={plateIndex}
+            className={"only-here-1 plate-type-" + (arr % 2).toString()}
+          >
+            {plate[plateIndex]}
+          </IonButton>
+        );
+      })}
     </>
   );
 }
@@ -34,18 +49,12 @@ export const DisplayGrid: React.FC<DisplayGridProps> = ({
     <IonGrid>
       <IonRow>
         <IonCol>
-          {values.map((value) => (
-            <IonButton key={value} className="only-here-1">
-              {value}
-            </IonButton>
-          ))}
-        </IonCol>
-      </IonRow>
-      <IonRow>
-        <IonCol>
           {plateType.map((arr, index, array) => (
-            <React.Fragment key={arr}>
-              {plateArr(arr, index, array)}
+            <React.Fragment key={index}>
+              {plateArr(arr, index, array, values)}
+              {index !== plateType.length - 1 && (
+                <IonButton className="only-here-1 plate-separator">-</IonButton>
+              )}
             </React.Fragment>
           ))}
         </IonCol>
