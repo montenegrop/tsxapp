@@ -12,7 +12,7 @@ import {
   IonButton,
   IonInput,
 } from "@ionic/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BotonRedondo } from "../components/BotonRedondo";
 
 // css:
@@ -33,6 +33,8 @@ interface Paso1PageProps {
   titulo: string;
   input: string | undefined;
   onInput: React.Dispatch<React.SetStateAction<string | undefined>>;
+  plate: string[];
+  plateType: number[];
 }
 
 const abecedario = "ABCDEFGHIJKLMOPQRSTUVWXYZ";
@@ -42,7 +44,7 @@ const ButtonsGrid: React.FC = () => {
     <IonGrid>
       <IonRow>
         {abecedario.split("").map((letter) => (
-          <IonCol>
+          <IonCol key={letter}>
             <IonButton size="large">{letter}</IonButton>
           </IonCol>
         ))}
@@ -55,7 +57,13 @@ const ButtonsGrid: React.FC = () => {
 };
 
 // componentes complejas importables:
-const Paso1Card: React.FC<Paso1PageProps> = ({ titulo, input, onInput }) => {
+const Paso1Card: React.FC<Paso1PageProps> = ({
+  titulo,
+  input,
+  onInput,
+  plate,
+  plateType,
+}) => {
   return (
     <IonCard className="ion-text-center">
       <IonCardContent className="ion-text-center">
@@ -63,7 +71,7 @@ const Paso1Card: React.FC<Paso1PageProps> = ({ titulo, input, onInput }) => {
           color={estilosProps.botonRedondo.color}
           texto={titulo}
         ></BotonRedondo>
-        <DisplayGrid plateType="modelo_1" values={["", "sd"]}></DisplayGrid>
+        <DisplayGrid plateType={plateType} values={plate}></DisplayGrid>
         <ButtonsGrid></ButtonsGrid>
       </IonCardContent>
     </IonCard>
@@ -72,6 +80,14 @@ const Paso1Card: React.FC<Paso1PageProps> = ({ titulo, input, onInput }) => {
 
 const Paso1Page: React.FC = () => {
   const [text, setText] = useState<string>();
+  const [plateType, setplateType] = useState<number[]>([2, 3, 2]);
+  // initial plate:
+  const plateLength = plateType.reduce((partialSum, a) => partialSum + a, 0);
+  const [plate, setPlate] = useState<string[]>(
+    Array(plateLength).join(".").split(".")
+  );
+
+  console.log(plate);
 
   return (
     <IonPage>
@@ -90,6 +106,8 @@ const Paso1Page: React.FC = () => {
                 titulo="patente"
                 input={text}
                 onInput={setText}
+                plate={plate}
+                plateType={plateType}
               ></Paso1Card>
             </IonCol>
           </IonRow>

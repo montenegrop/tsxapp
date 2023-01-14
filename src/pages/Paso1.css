@@ -19,3 +19,11 @@ ion-button.only-here-1 {
     --padding-top: 10px;
     --padding-bottom: 10px;
   }
+
+  ion-button.plate-type-0 {
+    --background: #93e9be;
+  }
+
+  ion-button.plate-type-1 {
+    --background: #e8e993;
+  }
