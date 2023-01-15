@@ -33,7 +33,7 @@ function plateArr(
         return (
           <IonButton
             key={plateIndex}
-            className={"only-here-1 plate-type-" + (arr % 2).toString()}
+            className={"only-here-1 plate-type-" + (arr_index % 2).toString()}
             onClick={() => onClick(plateIndex)}
           >
             {plate[plateIndex]}

@@ -21,9 +21,6 @@ export const PlateButtons: React.FC<PlateButtonsProps> = ({
             </IonButton>
           </IonCol>
         ))}
-        <IonCol>
-          <IonButton size="large">last</IonButton>
-        </IonCol>
       </IonRow>
     </IonGrid>
   );

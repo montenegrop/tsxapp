@@ -118,7 +118,7 @@ const Paso1Page: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar className="ion-justify-content-center">
           <BotonVolver texto="volver" />
           <IonTitle class="ion-text-center">Ingrese la patente</IonTitle>
         </IonToolbar>

@@ -27,3 +27,7 @@ ion-button.only-here-1 {
   ion-button.plate-type-1 {
     --background: #e8e993;
   }
+
+  ion-button.plate-separator {
+    --background: #232324;
+  }
