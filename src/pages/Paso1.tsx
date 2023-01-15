@@ -39,7 +39,10 @@ const plateTypeValues = [
   [3, 3],
 ];
 
-const plateTypeButtonsChange = [[1, 4], [2]];
+const plateTypeButtonsChange = [
+  [1, 4],
+  [2, 5],
+];
 
 const Paso1Page: React.FC = () => {
   const [plateType, setplateType] = useState<IplateType>({
@@ -64,6 +67,10 @@ const Paso1Page: React.FC = () => {
       configuration:
         plateTypeValues[(plateType.number + 1) % plateTypeValues.length],
     });
+  }
+
+  function onDisplayClick(index: number) {
+    setPlateIndexToChange(index);
   }
 
   // function changePlateIndexToChange() {
@@ -122,7 +129,7 @@ const Paso1Page: React.FC = () => {
                 <DisplayPlate
                   plateType={plateType.configuration}
                   values={plate}
-                  index={plateIndexToChange}
+                  onClick={onDisplayClick}
                 ></DisplayPlate>
                 <PlateButtons
                   hidden={!hide}

@@ -4,7 +4,7 @@ import React from "react";
 interface DisplayPlateProps {
   plateType: number[];
   values: string[];
-  index: number;
+  onClick: any;
 }
 
 function getPlateIndex(
@@ -23,7 +23,8 @@ function plateArr(
   arr: number,
   arr_index: number,
   plateType: number[],
-  plate: string[]
+  plate: string[],
+  onClick: any
 ) {
   return (
     <>
@@ -33,6 +34,7 @@ function plateArr(
           <IonButton
             key={plateIndex}
             className={"only-here-1 plate-type-" + (arr % 2).toString()}
+            onClick={() => onClick(plateIndex)}
           >
             {plate[plateIndex]}
           </IonButton>
@@ -45,7 +47,7 @@ function plateArr(
 export const DisplayPlate: React.FC<DisplayPlateProps> = ({
   plateType,
   values,
-  index,
+  onClick,
 }) => {
   return (
     <IonGrid>
@@ -53,7 +55,7 @@ export const DisplayPlate: React.FC<DisplayPlateProps> = ({
         <IonCol>
           {plateType.map((arr, index, array) => (
             <React.Fragment key={index}>
-              {plateArr(arr, index, array, values)}
+              {plateArr(arr, index, array, values, onClick)}
               {index !== plateType.length - 1 && (
                 <IonButton className="only-here-1 plate-separator">-</IonButton>
               )}
