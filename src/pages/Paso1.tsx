@@ -39,6 +39,8 @@ const plateTypeValues = [
   [3, 3],
 ];
 
+const plateTypeButtonsChange = [[1, 4], [2]];
+
 const Paso1Page: React.FC = () => {
   const [plateType, setplateType] = useState<IplateType>({
     number: 0,
@@ -75,7 +77,13 @@ const Paso1Page: React.FC = () => {
     old_plate[plateIndexToChange] = symbol;
     setPlate(old_plate);
     setPlateIndexToChange((plateIndexToChange + 1) % plate.length);
-    setHide(!hide);
+    if (
+      plateTypeButtonsChange[plateType.number].includes(
+        plateIndexToChange % plate.length
+      )
+    ) {
+      setHide(!hide);
+    }
   }
 
   const firstUpdate = useRef(true);
@@ -90,6 +98,7 @@ const Paso1Page: React.FC = () => {
     );
     setPlate(Array(plateLength).join(".").split("."));
     setPlateIndexToChange(0);
+    setHide(true);
   }, [plateType]);
 
   return (
@@ -116,12 +125,12 @@ const Paso1Page: React.FC = () => {
                   index={plateIndexToChange}
                 ></DisplayPlate>
                 <PlateButtons
-                  hidden={hide}
+                  hidden={!hide}
                   buttons={abecedario}
                   onAction={changePlate}
                 ></PlateButtons>
                 <PlateButtons
-                  hidden={!hide}
+                  hidden={hide}
                   buttons={numeros}
                   onAction={changePlate}
                 ></PlateButtons>
