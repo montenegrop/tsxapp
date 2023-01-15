@@ -102,7 +102,7 @@ const Paso1Page: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
         <IonGrid>
-          <IonRow>
+          <IonRow className="ion-justify-content-center">
             <IonCard className="ion-text-center">
               <IonCardContent className="ion-text-center">
                 <PlateType
