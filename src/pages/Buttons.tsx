@@ -10,7 +10,6 @@ import {
   IonIcon,
 } from "@ionic/react";
 import { star } from "ionicons/icons";
-import { PlateType } from "../components/page1/PlateType";
 
 const ButtonsPage: React.FC = () => {
   return (

@@ -57,7 +57,7 @@ export const DisplayPlate: React.FC<DisplayPlateProps> = ({
             <React.Fragment key={index}>
               {plateArr(arr, index, array, values, onClick)}
               {index !== plateType.length - 1 && (
-                <IonButton className="only-here-1 plate-separator">-</IonButton>
+                <IonButton className="plate-separator">-</IonButton>
               )}
             </React.Fragment>
           ))}

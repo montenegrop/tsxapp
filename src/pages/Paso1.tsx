@@ -39,22 +39,17 @@ const plateTypeValues = [
   [3, 3],
 ];
 
-const plateTypeButtonsChange = [
-  [1, 4],
-  [2, 5],
-];
-
 const plateTypeDisplayIndexesByType = [
   [0, 1, 5, 6],
   [0, 1, 2],
 ];
 
 const Paso1Page: React.FC = () => {
+  // usestates:
   const [plateType, setplateType] = useState<IplateType>({
     number: 0,
     configuration: plateTypeValues[0],
   });
-  // initial plate:
   const plateLength = plateType.configuration.reduce(
     (partial, curr) => partial + curr,
     0
@@ -66,6 +61,25 @@ const Paso1Page: React.FC = () => {
 
   const [hide, setHide] = useState(true);
 
+  console.log("in" + plateIndexToChange);
+
+  // useeffects:
+  const firstUpdate = useRef(true);
+  useLayoutEffect(() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+    const plateLength = plateType.configuration.reduce(
+      (partial, curr) => partial + curr,
+      0
+    );
+    setPlate(Array(plateLength).join(".").split("."));
+    setPlateIndexToChange(0);
+    setHide(true);
+  }, [plateType]);
+
+  // functions:
   function changePlateType() {
     setplateType({
       number: (plateType.number + 1) % plateTypeValues.length,
@@ -83,40 +97,23 @@ const Paso1Page: React.FC = () => {
     }
   }
 
-  // function changePlateIndexToChange() {
-  //   setPlateIndexToChange((plateIndexToChange + 1) % plate.length);
-  //   setHide(!hide);
-  //   console.log(hide);
-  // }
-
   function changePlate(symbol: string) {
     const old_plate = [...plate];
     old_plate[plateIndexToChange] = symbol;
     setPlate(old_plate);
-    setPlateIndexToChange((plateIndexToChange + 1) % plate.length);
+
     if (
-      plateTypeButtonsChange[plateType.number].includes(
-        plateIndexToChange % plate.length
+      plateTypeDisplayIndexesByType[plateType.number].includes(
+        (plateIndexToChange + 1) % plate.length
       )
     ) {
-      setHide(!hide);
+      setHide(true);
+    } else {
+      setHide(false);
     }
-  }
 
-  const firstUpdate = useRef(true);
-  useLayoutEffect(() => {
-    if (firstUpdate.current) {
-      firstUpdate.current = false;
-      return;
-    }
-    const plateLength = plateType.configuration.reduce(
-      (partial, curr) => partial + curr,
-      0
-    );
-    setPlate(Array(plateLength).join(".").split("."));
-    setPlateIndexToChange(0);
-    setHide(true);
-  }, [plateType]);
+    setPlateIndexToChange((plateIndexToChange + 1) % plate.length);
+  }
 
   return (
     <IonPage>
