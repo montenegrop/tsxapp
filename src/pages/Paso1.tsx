@@ -12,8 +12,6 @@ import {
 import { useLayoutEffect, useRef, useState } from "react";
 import { PlateType } from "../components/page1/PlateType";
 
-// css:
-import "./Paso2.css";
 import { BotonVolver } from "../components/BotonVolver";
 import { DisplayPlate } from "../components/page1/DisplayPlate";
 
