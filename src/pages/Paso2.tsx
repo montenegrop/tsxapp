@@ -112,19 +112,19 @@ const Paso2Page: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <div>content</div>
         <IonGrid>
-          <div>grid</div>
-          <IonRow>
-            <div>row</div>
-            <IonCol>
-              <div>col</div>
-              <Paso2Card
-                titulo="modelo"
-                input={text}
-                onInput={setText}
-              ></Paso2Card>
-            </IonCol>
+          <IonRow className="ion-justify-content-center">
+            <IonCard className="ion-text-center">
+              <IonCardContent>
+                <IonCol>
+                  <Paso2Card
+                    titulo="modelo"
+                    input={text}
+                    onInput={setText}
+                  ></Paso2Card>
+                </IonCol>
+              </IonCardContent>
+            </IonCard>
           </IonRow>
         </IonGrid>
       </IonContent>
