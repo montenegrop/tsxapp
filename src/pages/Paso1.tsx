@@ -44,6 +44,11 @@ const plateTypeButtonsChange = [
   [2, 5],
 ];
 
+const plateTypeDisplayIndexesByType = [
+  [0, 1, 5, 6],
+  [0, 1, 2],
+];
+
 const Paso1Page: React.FC = () => {
   const [plateType, setplateType] = useState<IplateType>({
     number: 0,
@@ -71,6 +76,11 @@ const Paso1Page: React.FC = () => {
 
   function onDisplayClick(index: number) {
     setPlateIndexToChange(index);
+    if (plateTypeDisplayIndexesByType[plateType.number].includes(index)) {
+      setHide(true);
+    } else {
+      setHide(false);
+    }
   }
 
   // function changePlateIndexToChange() {
