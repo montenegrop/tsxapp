@@ -6,14 +6,11 @@ import {
   IonToolbar,
   IonGrid,
   IonRow,
-  IonCol,
   IonCard,
   IonCardContent,
-  IonButton,
-  IonInput,
 } from "@ionic/react";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { BotonRedondo } from "../components/page1/BotonRedondo";
+import { useLayoutEffect, useRef, useState } from "react";
+import { PlateType } from "../components/page1/PlateType";
 
 // css:
 import "./Paso2.css";
@@ -22,7 +19,6 @@ import { DisplayPlate } from "../components/page1/DisplayPlate";
 
 import "./Paso1.css";
 import { PlateButtons } from "../components/page1/PlateButtons";
-import { config } from "process";
 
 const estilosProps = {
   botonRedondo: {
@@ -31,6 +27,7 @@ const estilosProps = {
 };
 
 const abecedario = "ABCDEFGHIJKLMOPQRSTUVWXYZ";
+const numeros = "0123456789x";
 
 interface IplateType {
   number: number;
@@ -57,7 +54,9 @@ const Paso1Page: React.FC = () => {
   );
   const [plateIndexToChange, setPlateIndexToChange] = useState(0);
 
-  async function changePlateType() {
+  const [hide, setHide] = useState(true);
+
+  function changePlateType() {
     setplateType({
       number: (plateType.number + 1) % plateTypeValues.length,
       configuration:
@@ -65,15 +64,18 @@ const Paso1Page: React.FC = () => {
     });
   }
 
-  function changePlateIndexToChange() {
-    setPlateIndexToChange((plateIndexToChange + 1) % plate.length);
-  }
+  // function changePlateIndexToChange() {
+  //   setPlateIndexToChange((plateIndexToChange + 1) % plate.length);
+  //   setHide(!hide);
+  //   console.log(hide);
+  // }
 
   function changePlate(symbol: string) {
     const old_plate = [...plate];
     old_plate[plateIndexToChange] = symbol;
     setPlate(old_plate);
     setPlateIndexToChange((plateIndexToChange + 1) % plate.length);
+    setHide(!hide);
   }
 
   const firstUpdate = useRef(true);
@@ -103,19 +105,24 @@ const Paso1Page: React.FC = () => {
           <IonRow>
             <IonCard className="ion-text-center">
               <IonCardContent className="ion-text-center">
-                <BotonRedondo
+                <PlateType
                   color={estilosProps.botonRedondo.color}
                   texto="patente"
                   onAction={changePlateType}
-                ></BotonRedondo>
+                ></PlateType>
                 <DisplayPlate
                   plateType={plateType.configuration}
                   values={plate}
                   index={plateIndexToChange}
-                  onChange={changePlateIndexToChange}
                 ></DisplayPlate>
                 <PlateButtons
+                  hidden={hide}
                   buttons={abecedario}
+                  onAction={changePlate}
+                ></PlateButtons>
+                <PlateButtons
+                  hidden={!hide}
+                  buttons={numeros}
                   onAction={changePlate}
                 ></PlateButtons>
               </IonCardContent>

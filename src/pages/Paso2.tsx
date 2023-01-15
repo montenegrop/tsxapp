@@ -25,7 +25,7 @@ import {
 import { pin, wifi, wine, warning, walk } from "ionicons/icons";
 import { star } from "ionicons/icons";
 import { useState } from "react";
-import { BotonRedondo } from "../components/page1/BotonRedondo";
+import { PlateType } from "../components/page1/PlateType";
 
 // css:
 import "./Paso2.css";
@@ -100,7 +100,6 @@ const Paso2Card: React.FC<Paso2PageProps> = ({ titulo, input, onInput }) => {
 };
 
 const Paso2Page: React.FC = () => {
-  const [number, setNumber] = useState<number>();
   const [text, setText] = useState<string>();
 
   return (

@@ -1,16 +1,12 @@
 import { IonButton } from "@ionic/react";
 
-interface BotonRedondoProps {
+interface PlateTypeProps {
   texto: string;
   color?: string;
   onAction: any;
 }
 
-const BotonRedondo: React.FC<BotonRedondoProps> = ({
-  texto,
-  color,
-  onAction,
-}) => {
+const PlateType: React.FC<PlateTypeProps> = ({ texto, color, onAction }) => {
   return (
     <IonButton onClick={onAction} color={color} shape="round">
       {texto}
@@ -18,4 +14,4 @@ const BotonRedondo: React.FC<BotonRedondoProps> = ({
   );
 };
 
-export { BotonRedondo };
+export { PlateType };
