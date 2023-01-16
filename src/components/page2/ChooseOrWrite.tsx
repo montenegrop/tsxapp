@@ -6,6 +6,7 @@ import {
   IonSelect,
   IonSelectOption,
 } from "@ionic/react";
+import { useRef } from "react";
 
 interface option {
   value: string | undefined;
@@ -18,13 +19,18 @@ interface ChooseOrWriteProps {
   selectLabel: string;
   options: option[];
   onManualChange: any;
-  onOpntionSelect: any;
+  onOptionSelect: any;
 }
 
 function onCancel(this: any) {
-  console.log(this);
   this.value = undefined;
   return;
+}
+function handleManualChange(ref: React.MutableRefObject<any>) {
+  console.log({ ref: ref.current.value });
+}
+function handleOptionChange(ref: React.MutableRefObject<any>) {
+  console.log({ ref: ref.current.value });
 }
 
 export const ChooseOrWrite: React.FC<ChooseOrWriteProps> = ({
@@ -32,8 +38,11 @@ export const ChooseOrWrite: React.FC<ChooseOrWriteProps> = ({
   selectLabel,
   options,
   onManualChange,
-  onOpntionSelect,
+  onOptionSelect,
 }) => {
+  const manualRef = useRef<any>(null);
+  const optionRef = useRef<any>(null);
+
   return (
     <IonList>
       <IonItem>
@@ -43,7 +52,8 @@ export const ChooseOrWrite: React.FC<ChooseOrWriteProps> = ({
           interface="action-sheet"
           cancelText="cancelar"
           okText="oktexto"
-          onIonChange={(e) => console.log(e.detail.value)}
+          ref={optionRef}
+          onIonChange={() => handleOptionChange(optionRef)}
           onIonCancel={onCancel}
         >
           {options.map((option) => (
@@ -56,7 +66,8 @@ export const ChooseOrWrite: React.FC<ChooseOrWriteProps> = ({
       <IonItem>
         <IonLabel>{manualLabel}</IonLabel>
         <IonInput
-          onIonChange={(e) => onOpntionSelect(e.detail.value!)}
+          ref={manualRef}
+          onIonChange={() => handleManualChange(manualRef)}
         ></IonInput>
       </IonItem>
     </IonList>

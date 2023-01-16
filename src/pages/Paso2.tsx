@@ -8,6 +8,7 @@ import {
   IonRow,
   IonCard,
   IonCardContent,
+  IonButton,
 } from "@ionic/react";
 
 // css:
@@ -55,7 +56,7 @@ const Paso2Page: React.FC = () => {
                   selectLabel={selectLabelModel}
                   options={optionsModel}
                   onManualChange={null}
-                  onOpntionSelect={null}
+                  onOptionSelect={null}
                 ></ChooseOrWrite>
               </IonCardContent>
             </IonCard>
@@ -69,10 +70,15 @@ const Paso2Page: React.FC = () => {
                   selectLabel={selectLabelColor}
                   options={optionsColor}
                   onManualChange={null}
-                  onOpntionSelect={null}
+                  onOptionSelect={null}
                 ></ChooseOrWrite>
               </IonCardContent>
             </IonCard>
+          </IonRow>
+          <IonRow className="ion-justify-content-center">
+            <IonButton color="warning" shape="round">
+              Continuar
+            </IonButton>
           </IonRow>
         </IonGrid>
       </IonContent>
