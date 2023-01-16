@@ -1,30 +1,14 @@
 import {
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-  IonButton,
   IonList,
   IonItem,
-  IonIcon,
-  IonGrid,
-  IonRow,
-  IonCol,
-  IonCard,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonCardContent,
   IonLabel,
-  IonItemDivider,
   IonInput,
   IonSelect,
   IonSelectOption,
 } from "@ionic/react";
 
 interface option {
-  value: string;
+  value: string | undefined;
   name: string;
 }
 
@@ -37,6 +21,12 @@ interface ChooseOrWriteProps {
   onOpntionSelect: any;
 }
 
+function onCancel(this: any) {
+  console.log(this);
+  this.value = undefined;
+  return;
+}
+
 export const ChooseOrWrite: React.FC<ChooseOrWriteProps> = ({
   manualLabel,
   selectLabel,
@@ -47,28 +37,27 @@ export const ChooseOrWrite: React.FC<ChooseOrWriteProps> = ({
   return (
     <IonList>
       <IonItem>
-        <IonButton shape="round">"sdsd"</IonButton>
+        <IonLabel>{selectLabel}</IonLabel>
+        <IonSelect
+          placeholder="placeholder"
+          interface="action-sheet"
+          cancelText="cancelar"
+          okText="oktexto"
+          onIonChange={(e) => console.log(e.detail.value)}
+          onIonCancel={onCancel}
+        >
+          {options.map((option) => (
+            <IonSelectOption key={option.value} value={option.value}>
+              {option.name}
+            </IonSelectOption>
+          ))}
+        </IonSelect>
       </IonItem>
       <IonItem>
         <IonLabel>{manualLabel}</IonLabel>
         <IonInput
           onIonChange={(e) => onOpntionSelect(e.detail.value!)}
         ></IonInput>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Seleccionar:</IonLabel>
-        <IonSelect
-          interface="action-sheet"
-          cancelText="cancelar"
-          okText="oktexto"
-        >
-          {options.map((option) => (
-            <IonSelectOption key={option.value} value={option.value}>
-              {option.value}
-            </IonSelectOption>
-          ))}
-          <IonSelectOption value="blonde">Blonde</IonSelectOption>
-        </IonSelect>
       </IonItem>
     </IonList>
   );
