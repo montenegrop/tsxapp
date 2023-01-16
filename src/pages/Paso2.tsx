@@ -16,23 +16,38 @@ import "./Paso2.css";
 import { BotonVolver } from "../components/BotonVolver";
 import { ChooseOrWrite } from "../components/page2/ChooseOrWrite";
 
-// modelo:
-const titleModel = "Modelo";
-const muanualLabelModel = "Escribir";
-const selectLabelModel = "Elegir";
 const optionsModel = [
   { name: "Fiat", value: "fiat" },
   { name: "Renault", value: "renault" },
+  { name: "---borrar---", value: null },
 ];
-
-// color:
-const titleColor = "Color";
-const muanualLabelColor = "Escribir";
-const selectLabelColor = "Elegir";
 const optionsColor = [
   { name: "Rojo", value: "rojo" },
   { name: "Azúl", value: "azúl" },
+  { name: "*borrar-selección", value: null },
 ];
+
+const cardsParams = {
+  modelo: {
+    field: "modelo",
+    title: "Modelo",
+    selectLabel: "elegir:",
+    manualLabel: "escribir:",
+    options: optionsModel,
+  },
+  color: {
+    field: "color",
+    title: "Color",
+    selectLabel: "elegir:",
+    manualLabel: "escribir:",
+    options: optionsColor,
+  },
+};
+
+// color:
+
+function getValues(field: string, value: string, selected: boolean) {}
+function continuarPasoDos() {}
 
 const Paso2Page: React.FC = () => {
   return (
@@ -50,13 +65,10 @@ const Paso2Page: React.FC = () => {
           <IonRow className="ion-justify-content-center">
             <IonCard className="ion-text-center">
               <IonCardContent>
-                <IonTitle>{titleModel}</IonTitle>
+                <IonTitle>{cardsParams.modelo.title}</IonTitle>
                 <ChooseOrWrite
-                  manualLabel={muanualLabelModel}
-                  selectLabel={selectLabelModel}
-                  options={optionsModel}
-                  onManualChange={null}
-                  onOptionSelect={null}
+                  params={cardsParams.modelo}
+                  onSelection={getValues}
                 ></ChooseOrWrite>
               </IonCardContent>
             </IonCard>
@@ -64,18 +76,18 @@ const Paso2Page: React.FC = () => {
           <IonRow className="ion-justify-content-center">
             <IonCard className="ion-text-center">
               <IonCardContent>
-                <IonTitle>{titleColor}</IonTitle>
+                <IonTitle>{cardsParams.color.title}</IonTitle>
                 <ChooseOrWrite
-                  manualLabel={muanualLabelColor}
-                  selectLabel={selectLabelColor}
-                  options={optionsColor}
-                  onManualChange={null}
-                  onOptionSelect={null}
+                  params={cardsParams.color}
+                  onSelection={getValues}
                 ></ChooseOrWrite>
               </IonCardContent>
             </IonCard>
           </IonRow>
-          <IonRow className="ion-justify-content-center">
+          <IonRow
+            onClick={() => continuarPasoDos()}
+            className="ion-justify-content-center"
+          >
             <IonButton color="warning" shape="round">
               Continuar
             </IonButton>

@@ -9,65 +9,78 @@ import {
 import { useRef } from "react";
 
 interface option {
-  value: string | undefined;
+  value: string | undefined | null;
   name: string;
+}
+
+interface Parameters {
+  field: string;
+  title: string;
+  selectLabel: string;
+  manualLabel: string;
+  options: option[];
 }
 
 // interfaces:
 interface ChooseOrWriteProps {
-  manualLabel: string;
-  selectLabel: string;
-  options: option[];
-  onManualChange: any;
-  onOptionSelect: any;
+  params: Parameters;
+  onSelection: (field: string, value: string, selected: boolean) => void;
 }
 
-function onCancel(this: any) {
-  this.value = undefined;
+function onCancel(this: any, refValue: string) {
+  if (!this.value || this.value == refValue) {
+    this.value = undefined;
+  }
+  console.log("cancel");
   return;
-}
-function handleManualChange(ref: React.MutableRefObject<any>) {
-  console.log({ ref: ref.current.value });
-}
-function handleOptionChange(ref: React.MutableRefObject<any>) {
-  console.log({ ref: ref.current.value });
 }
 
 export const ChooseOrWrite: React.FC<ChooseOrWriteProps> = ({
-  manualLabel,
-  selectLabel,
-  options,
-  onManualChange,
-  onOptionSelect,
+  params,
+  onSelection,
 }) => {
-  const manualRef = useRef<any>(null);
   const optionRef = useRef<any>(null);
+  const manualRef = useRef<any>(null);
+
+  function onOptionSelected(this: any) {
+    console.log("onselect" + this.value + optionRef.current.value);
+    if (!this.value) {
+      this.value = undefined;
+    }
+  }
 
   return (
     <IonList>
       <IonItem>
-        <IonLabel>{selectLabel}</IonLabel>
+        <IonLabel>{params.selectLabel}</IonLabel>
         <IonSelect
           placeholder="placeholder"
           interface="action-sheet"
           cancelText="cancelar"
           okText="oktexto"
           ref={optionRef}
-          onIonChange={() => handleOptionChange(optionRef)}
-          onIonCancel={onCancel}
+          onIonChange={onOptionSelected}
+          onIonBlur={() =>
+            onSelection(params.field, optionRef.current.value, true)
+          }
         >
-          {options.map((option) => (
-            <IonSelectOption key={option.value} value={option.value}>
+          {params.options.map((option) => (
+            <IonSelectOption
+              key={option.value ?? "default"}
+              value={option.value}
+            >
               {option.name}
             </IonSelectOption>
           ))}
         </IonSelect>
       </IonItem>
       <IonItem>
-        <IonLabel>{manualLabel}</IonLabel>
+        <IonLabel>{params.manualLabel}</IonLabel>
         <IonInput
           ref={manualRef}
-          onIonChange={() => handleManualChange(manualRef)}
+          onIonBlur={() =>
+            onSelection(params.field, manualRef.current.value, false)
+          }
         ></IonInput>
       </IonItem>
     </IonList>
