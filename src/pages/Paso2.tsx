@@ -65,14 +65,16 @@ const Paso2Page: React.FC = () => {
   const [state, setState] = useState<state>({ modelo: null, color: null });
 
   function getValues(field: string, value: string, selected: boolean) {
+    console.log("getvalue" + field);
+
     const stateField: any = {};
     stateField[field] = { value: value, selected: selected };
     setState({ ...state, ...stateField });
   }
 
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
+  // useEffect(() => {
+  //   console.log(state);
+  // }, [state]);
 
   return (
     <IonPage>

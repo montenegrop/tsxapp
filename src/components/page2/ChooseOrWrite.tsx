@@ -35,6 +35,14 @@ interface ChooseOrWriteProps {
 //   return;
 // }
 
+let selectThis: any = undefined;
+let manualThis: any = undefined;
+let autoTrigger: boolean = false;
+
+// if (!this.value) {
+//   this.value = undefined;
+// }
+
 export const ChooseOrWrite: React.FC<ChooseOrWriteProps> = ({
   params,
   onSelection,
@@ -44,10 +52,23 @@ export const ChooseOrWrite: React.FC<ChooseOrWriteProps> = ({
   const manualRef = useRef<any>(null);
 
   function onOptionSelected(this: any) {
-    console.log("onselect" + this.value + optionRef.current.value);
-    if (!this.value) {
-      this.value = undefined;
+    selectThis = this;
+    if (manualThis?.value && !autoTrigger) {
+      autoTrigger = true;
+      manualThis.value = "";
     }
+    autoTrigger = false;
+    onSelection(params.field, optionRef.current.value, true);
+  }
+
+  function onManualInput(this: any) {
+    manualThis = this;
+    if (manualThis?.value && !autoTrigger) {
+      autoTrigger = true;
+      selectThis.value = undefined;
+    }
+    autoTrigger = false;
+    onSelection(params.field, manualRef.current.value, false);
   }
 
   return (
@@ -60,10 +81,8 @@ export const ChooseOrWrite: React.FC<ChooseOrWriteProps> = ({
           cancelText="cancelar"
           okText="oktexto"
           ref={optionRef}
+          //   onIonChange={onOptionSelected}
           onIonChange={onOptionSelected}
-          onIonBlur={() =>
-            onSelection(params.field, optionRef.current.value, true)
-          }
         >
           {params.options.map((option) => (
             <IonSelectOption
@@ -77,12 +96,7 @@ export const ChooseOrWrite: React.FC<ChooseOrWriteProps> = ({
       </IonItem>
       <IonItem>
         <IonLabel>{params.manualLabel}</IonLabel>
-        <IonInput
-          ref={manualRef}
-          onIonBlur={() =>
-            onSelection(params.field, manualRef.current.value, false)
-          }
-        ></IonInput>
+        <IonInput ref={manualRef} onIonChange={onManualInput}></IonInput>
       </IonItem>
     </IonList>
   );
