@@ -27,18 +27,19 @@ interface ChooseOrWriteProps {
   onSelection: (field: string, value: string, selected: boolean) => void;
 }
 
-function onCancel(this: any, refValue: string) {
-  if (!this.value || this.value == refValue) {
-    this.value = undefined;
-  }
-  console.log("cancel");
-  return;
-}
+// function onCancel(this: any, refValue: string) {
+//   if (!this.value || this.value == refValue) {
+//     this.value = undefined;
+//   }
+//   console.log("cancel");
+//   return;
+// }
 
 export const ChooseOrWrite: React.FC<ChooseOrWriteProps> = ({
   params,
   onSelection,
 }) => {
+  // fix: el primer ref seria mejor undefined pero no se puede
   const optionRef = useRef<any>(null);
   const manualRef = useRef<any>(null);
 

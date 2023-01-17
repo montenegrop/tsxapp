@@ -15,6 +15,7 @@ import {
 import "./Paso2.css";
 import { BotonVolver } from "../components/BotonVolver";
 import { ChooseOrWrite } from "../components/page2/ChooseOrWrite";
+import { useState, useEffect } from "react";
 
 const optionsModel = [
   { name: "Fiat", value: "fiat" },
@@ -46,10 +47,33 @@ const cardsParams = {
 
 // color:
 
-function getValues(field: string, value: string, selected: boolean) {}
-function continuarPasoDos() {}
+function continuarPasoTres() {
+  console.log("cont");
+}
+
+interface cardParams {
+  value: string;
+  selected: boolean;
+}
+
+interface state {
+  modelo: cardParams | null;
+  color: cardParams | null;
+}
 
 const Paso2Page: React.FC = () => {
+  const [state, setState] = useState<state>({ modelo: null, color: null });
+
+  function getValues(field: string, value: string, selected: boolean) {
+    const stateField: any = {};
+    stateField[field] = { value: value, selected: selected };
+    setState({ ...state, ...stateField });
+  }
+
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
+
   return (
     <IonPage>
       <IonHeader>
@@ -84,11 +108,12 @@ const Paso2Page: React.FC = () => {
               </IonCardContent>
             </IonCard>
           </IonRow>
-          <IonRow
-            onClick={() => continuarPasoDos()}
-            className="ion-justify-content-center"
-          >
-            <IonButton color="warning" shape="round">
+          <IonRow className="ion-justify-content-center">
+            <IonButton
+              onClick={() => continuarPasoTres()}
+              color="warning"
+              shape="round"
+            >
               Continuar
             </IonButton>
           </IonRow>
