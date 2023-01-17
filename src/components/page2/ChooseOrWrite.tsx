@@ -37,11 +37,31 @@ interface ChooseOrWriteProps {
 
 let selectThis: any = undefined;
 let manualThis: any = undefined;
-let autoTrigger: boolean = false;
+let autoTrigger: any = [false, 0];
+let historial: any = ["", "", ""];
 
-// if (!this.value) {
-//   this.value = undefined;
-// }
+//   if (!this.value) {
+//     autoTrigger = true;
+//     console.log("entro a und");
+//     this.value = undefined;
+//   }
+
+function isAutomatictrigger(histotial: string[], current: string): boolean {
+  function equal(a: string, b: string) {
+    if (a === "" || a === b) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  const vector = [equal(historial[0], current), equal(historial[1], current)];
+  if (JSON.stringify(vector) === JSON.stringify([true, false])) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 export const ChooseOrWrite: React.FC<ChooseOrWriteProps> = ({
   params,
@@ -52,22 +72,18 @@ export const ChooseOrWrite: React.FC<ChooseOrWriteProps> = ({
   const manualRef = useRef<any>(null);
 
   function onOptionSelected(this: any) {
-    selectThis = this;
-    if (manualThis?.value && !autoTrigger) {
-      autoTrigger = true;
-      manualThis.value = "";
-    }
-    autoTrigger = false;
+    // selectThis = this;
+    // if (manualThis?.value) {
+    //   manualThis.value = "";
+    // }
     onSelection(params.field, optionRef.current.value, true);
   }
 
   function onManualInput(this: any) {
-    manualThis = this;
-    if (manualThis?.value && !autoTrigger) {
-      autoTrigger = true;
-      selectThis.value = undefined;
-    }
-    autoTrigger = false;
+    // manualThis = this;
+    // if (selectThis?.value) {
+    //   selectThis.value = undefined;
+    // }
     onSelection(params.field, manualRef.current.value, false);
   }
 

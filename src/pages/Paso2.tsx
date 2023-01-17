@@ -65,7 +65,7 @@ const Paso2Page: React.FC = () => {
   const [state, setState] = useState<state>({ modelo: null, color: null });
 
   function getValues(field: string, value: string, selected: boolean) {
-    console.log("getvalue" + field);
+    console.log("getvalue" + field + " " + selected);
 
     const stateField: any = {};
     stateField[field] = { value: value, selected: selected };
