@@ -40,12 +40,6 @@ let manualThis: any = undefined;
 let autoTrigger: any = [false, 0];
 let historial: any = ["", "", ""];
 
-//   if (!this.value) {
-//     autoTrigger = true;
-//     console.log("entro a und");
-//     this.value = undefined;
-//   }
-
 function isAutomatictrigger(histotial: string[], current: string): boolean {
   function equal(a: string, b: string) {
     if (a === "" || a === b) {
@@ -72,6 +66,9 @@ export const ChooseOrWrite: React.FC<ChooseOrWriteProps> = ({
   const manualRef = useRef<any>(null);
 
   function onOptionSelected(this: any) {
+    if (!this.value) {
+      this.value = undefined;
+    }
     // selectThis = this;
     // if (manualThis?.value) {
     //   manualThis.value = "";
