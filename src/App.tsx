@@ -26,6 +26,7 @@ import "./theme/variables.css";
 import LoginPage from "./pages/Login";
 import { Paso1Page } from "./pages/Paso1";
 import { InputExamples } from "./components/TextInputs";
+import { Paso3Page } from "./pages/Paso3";
 
 // import "./pages/Paso1.css";
 
@@ -46,6 +47,9 @@ const App: React.FC = () => (
         </Route>
         <Route exact path="/pasodos">
           <Paso2Page />
+        </Route>
+        <Route exact path="/pasotres">
+          <Paso3Page />
         </Route>
         <Route exact path="/test/input">
           <InputExamples />
