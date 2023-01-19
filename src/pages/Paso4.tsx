@@ -19,6 +19,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { BotonVolver } from "../components/BotonVolver";
 
 import "./Paso4.css";
+import { InfiniteScroll } from "../components/page4/InfiniteScroll";
 
 const Option1 = {
   text: "opcion1",
@@ -39,86 +40,17 @@ const Paso4Page: React.FC = () => {
             <IonCol>
               <IonCard className="ion-text-center">
                 <IonCardContent>
-                  <IonTitle>Afectados</IonTitle>
-                  <IonItem>
-                    <IonCheckbox
-                      className="page3-checkbox"
-                      slot="start"
-                    ></IonCheckbox>
-                    <IonLabel>Otros conductores</IonLabel>
-                  </IonItem>
-                  <IonItem>
-                    <IonCheckbox
-                      className="page3-checkbox"
-                      slot="start"
-                    ></IonCheckbox>
-                    <IonLabel>Peatones</IonLabel>
-                  </IonItem>
-                  <IonItem>
-                    <IonCheckbox
-                      className="page3-checkbox"
-                      slot="start"
-                    ></IonCheckbox>
-                    <IonLabel>Ciclistas</IonLabel>
-                  </IonItem>
-                  <IonItem>
-                    <IonCheckbox
-                      className="page3-checkbox"
-                      slot="start"
-                    ></IonCheckbox>
-                    <IonLabel>Otro</IonLabel>
-                  </IonItem>
-                  <IonItem>
-                    <IonCheckbox
-                      className="page3-checkbox"
-                      slot="start"
-                    ></IonCheckbox>
-                    <IonLabel>No aplica</IonLabel>
-                  </IonItem>
+                  <InfiniteScroll></InfiniteScroll>
                 </IonCardContent>
               </IonCard>
-            </IonCol>
-            <IonCol>
               <IonCard className="ion-text-center">
                 <IonCardContent>
-                  <IonTitle>Gravedad</IonTitle>
-                  <IonItem>
-                    <IonCheckbox
-                      className="page3-checkbox"
-                      slot="start"
-                    ></IonCheckbox>
-                    <IonLabel>
-                      Desubicación, causa incomodidades, complciaciones
-                    </IonLabel>
-                  </IonItem>
-                  <IonItem>
-                    <IonCheckbox
-                      className="page3-checkbox"
-                      slot="start"
-                    ></IonCheckbox>
-                    <IonLabel>Infracción de tránsito común</IonLabel>
-                  </IonItem>
-                  <IonItem>
-                    <IonCheckbox
-                      className="page3-checkbox"
-                      slot="start"
-                    ></IonCheckbox>
-                    <IonLabel>Infracción de tránsito disruptiva</IonLabel>
-                  </IonItem>
-                  <IonItem>
-                    <IonCheckbox
-                      className="page3-checkbox"
-                      slot="start"
-                    ></IonCheckbox>
-                    <IonLabel>Infracción muy peligrosa, inmoral</IonLabel>
-                  </IonItem>
-                  <IonItem>
-                    <IonCheckbox
-                      className="page3-checkbox"
-                      slot="start"
-                    ></IonCheckbox>
-                    <IonLabel>No aplica</IonLabel>
-                  </IonItem>
+                  <InfiniteScroll></InfiniteScroll>
+                </IonCardContent>
+              </IonCard>
+              <IonCard className="ion-text-center">
+                <IonCardContent>
+                  <InfiniteScroll></InfiniteScroll>
                 </IonCardContent>
               </IonCard>
             </IonCol>
