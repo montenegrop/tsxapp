@@ -4,3 +4,7 @@
   this.value = undefined;
   return;
 }`
+
+# estructura page:
+
+-content, grid, row, card (cardcontent)

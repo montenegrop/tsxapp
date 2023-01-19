@@ -33,22 +33,20 @@ const cardsParams = {
     field: "modelo",
     title: "Modelo",
     selectLabel: "elegir:",
-    manualLabel: "escribir:",
+    manualLabel: "otra:",
     options: optionsModel,
   },
   color: {
     field: "color",
     title: "Color",
     selectLabel: "elegir:",
-    manualLabel: "escribir:",
+    manualLabel: "otra:",
     options: optionsColor,
   },
 };
 
-// color:
-
 function continuarPasoTres() {
-  console.log("cont");
+  console.log("continuar");
 }
 
 interface cardParams {
@@ -71,10 +69,6 @@ const Paso2Page: React.FC = () => {
     stateField[field] = { value: value, selected: selected };
     setState({ ...state, ...stateField });
   }
-
-  // useEffect(() => {
-  //   console.log(state);
-  // }, [state]);
 
   return (
     <IonPage>

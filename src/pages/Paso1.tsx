@@ -8,6 +8,9 @@ import {
   IonRow,
   IonCard,
   IonCardContent,
+  IonItem,
+  IonCheckbox,
+  IonLabel,
 } from "@ionic/react";
 import { useLayoutEffect, useRef, useState } from "react";
 import { PlateType } from "../components/page1/PlateType";
