@@ -4,127 +4,114 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  IonButton,
-  IonList,
-  IonItem,
-  IonIcon,
   IonGrid,
   IonRow,
-  IonCol,
   IonCard,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
   IonCardContent,
-  IonLabel,
-  IonItemDivider,
-  IonInput,
-  IonSelect,
-  IonSelectOption,
+  IonButton,
 } from "@ionic/react";
-import { pin, wifi, wine, warning, walk } from "ionicons/icons";
-import { star } from "ionicons/icons";
-import { useState } from "react";
-import { PlateType } from "../components/page1/PlateType";
 
 // css:
 import "./Paso2.css";
 import { BotonVolver } from "../components/BotonVolver";
+import { ChooseOrWrite } from "../components/page2/ChooseOrWrite";
+import { useState, useEffect } from "react";
 
-const estilosProps = {
-  botonRedondo: {
-    color: "warning",
+const optionsModel = [
+  { name: "Fiat", value: "fiat" },
+  { name: "Renault", value: "renault" },
+  { name: "---borrar---", value: null },
+];
+const optionsColor = [
+  { name: "Rojo", value: "rojo" },
+  { name: "Azúl", value: "azúl" },
+  { name: "*borrar-selección", value: null },
+];
+
+const cardsParams = {
+  modelo: {
+    field: "modelo",
+    title: "Modelo",
+    selectLabel: "elegir:",
+    manualLabel: "otra:",
+    options: optionsModel,
+  },
+  color: {
+    field: "color",
+    title: "Color",
+    selectLabel: "elegir:",
+    manualLabel: "otra:",
+    options: optionsColor,
   },
 };
 
-const estilos = {
-  col: {
-    "--background": "light-gray",
-  },
-  label: {
-    flex: "0 0 120px",
-  },
-};
-
-const options = {
-  cssClass: "my-custom-interface",
-};
-
-// interfaces:
-interface Paso2PageProps {
-  titulo: string;
-  input: string | undefined;
-  onInput: React.Dispatch<React.SetStateAction<string | undefined>>;
+function continuarPasoTres() {
+  console.log("continuar");
 }
-// componentes complejas importables:
-const Paso2Card: React.FC<Paso2PageProps> = ({ titulo, input, onInput }) => {
-  return (
-    <IonCard className="ion-text-center">
-      <IonCardContent className="ion-text-center">
-        {/* <BotonRedondo
-          color={estilosProps.botonRedondo.color}
-          texto={titulo}
-        ></BotonRedondo> */}
-        <IonList>
-          <IonItem lines="full">
-            <IonLabel style={estilos.label} position="fixed" className="mr-0">
-              Ingreso manual:
-            </IonLabel>
-            <IonInput
-              value={input}
-              onIonChange={(e) => onInput(e.detail.value!)}
-            ></IonInput>
-          </IonItem>
-          <IonItem lines="full">
-            <IonLabel style={estilos.label} position="fixed">
-              Seleccionar:
-            </IonLabel>
-            <IonSelect
-              interface="alert"
-              cancelText="cancelar"
-              okText="oktexto"
-              interfaceOptions={options}
-            >
-              <IonSelectOption value="brown" class="brown-option">
-                Brown
-              </IonSelectOption>
-              <IonSelectOption value="blonde">Blonde</IonSelectOption>
-              <IonSelectOption value="black">Black</IonSelectOption>
-              <IonSelectOption value="red">Red</IonSelectOption>
-            </IonSelect>
-          </IonItem>
-        </IonList>
-      </IonCardContent>
-    </IonCard>
-  );
-};
+
+interface cardParams {
+  value: string;
+  selected: boolean;
+}
+
+interface state {
+  modelo: cardParams | null;
+  color: cardParams | null;
+}
 
 const Paso2Page: React.FC = () => {
-  const [text, setText] = useState<string>();
+  const [state, setState] = useState<state>({ modelo: null, color: null });
+
+  function getValues(field: string, value: string, selected: boolean) {
+    console.log("getvalue" + field + " " + selected);
+
+    const stateField: any = {};
+    stateField[field] = { value: value, selected: selected };
+    setState({ ...state, ...stateField });
+  }
 
   return (
     <IonPage>
-      <div></div>
       <IonHeader>
         <IonToolbar>
           <BotonVolver texto="volver" />
-          <IonTitle class="ion-text-center">Más datos descriptivos</IonTitle>
+          <IonTitle class="ion-text-center">
+            Datos descriptivos principales
+          </IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <div>content</div>
         <IonGrid>
-          <div>grid</div>
-          <IonRow>
-            <div>row</div>
-            <IonCol>
-              <div>col</div>
-              <Paso2Card
-                titulo="modelo"
-                input={text}
-                onInput={setText}
-              ></Paso2Card>
-            </IonCol>
+          <IonRow className="ion-justify-content-center">
+            <IonCard className="ion-text-center">
+              <IonCardContent>
+                <IonTitle>{cardsParams.modelo.title}</IonTitle>
+                <ChooseOrWrite
+                  params={cardsParams.modelo}
+                  onSelection={getValues}
+                ></ChooseOrWrite>
+              </IonCardContent>
+            </IonCard>
+          </IonRow>
+          <IonRow className="ion-justify-content-center">
+            <IonCard className="ion-text-center">
+              <IonCardContent>
+                <IonTitle>{cardsParams.color.title}</IonTitle>
+                <ChooseOrWrite
+                  params={cardsParams.color}
+                  onSelection={getValues}
+                ></ChooseOrWrite>
+              </IonCardContent>
+            </IonCard>
+          </IonRow>
+          <IonRow className="ion-justify-content-center">
+            <IonButton
+              onClick={() => continuarPasoTres()}
+              color="warning"
+              shape="round"
+            >
+              Continuar
+            </IonButton>
           </IonRow>
         </IonGrid>
       </IonContent>

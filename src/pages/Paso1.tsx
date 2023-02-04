@@ -8,12 +8,13 @@ import {
   IonRow,
   IonCard,
   IonCardContent,
+  IonItem,
+  IonCheckbox,
+  IonLabel,
 } from "@ionic/react";
 import { useLayoutEffect, useRef, useState } from "react";
 import { PlateType } from "../components/page1/PlateType";
 
-// css:
-import "./Paso2.css";
 import { BotonVolver } from "../components/BotonVolver";
 import { DisplayPlate } from "../components/page1/DisplayPlate";
 
@@ -118,7 +119,7 @@ const Paso1Page: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar className="ion-justify-content-center">
+        <IonToolbar>
           <BotonVolver texto="volver" />
           <IonTitle class="ion-text-center">Ingrese la patente</IonTitle>
         </IonToolbar>
@@ -127,7 +128,7 @@ const Paso1Page: React.FC = () => {
         <IonGrid>
           <IonRow className="ion-justify-content-center">
             <IonCard className="ion-text-center">
-              <IonCardContent className="ion-text-center">
+              <IonCardContent>
                 <PlateType
                   color={estilosProps.botonRedondo.color}
                   texto="patente"
