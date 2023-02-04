@@ -55,7 +55,6 @@ const App: React.FC = () => (
         <Route exact path="/pasocuatro">
           <Paso4Page />
         </Route>
-
         <Route exact path="/test/input">
           <InputExamples />
         </Route>
